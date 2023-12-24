@@ -1,0 +1,31 @@
+## 缺乏对自我转账的检查
+
+### 配置
+
+* 检测器 ID： `self-transfer`
+* 严重程度：高
+
+### 描述
+
+在将代币转账给接收者之前，合约应该检查接收者是否就是发送者本身。否则，攻击者可能会通过滥用这个漏洞来铸造无限的代币。
+
+请查看 [Stader\_\_NEAR 事件报告 — 2022/08/16 | 作者 Stader Labs | Medium](https://blog.staderlabs.com/stader-near-incident-report-08-16-2022-afe077ffd549) 和 [确保 ft_transfer 中的发送者和接收者不相同 · stader-labs/near-liquid-token@04480ab (github.com)](https://github.com/stader-labs/near-liquid-token/commit/04480abe4585b75a663e1d7fae673da7d7fe7ea3) 以了解更多详情。
+
+### 示例代码
+
+在 [near-contract-standards](https://github.com/near/near-sdk-rs/tree/master/near-contract-standards) 中的代码展示了正确的实现，即接收者不应该是发送者。
+
+```rust
+// https://github.com/near/near-sdk-rs/blob/770cbce018a1b6c49d58276a075ace3da96d6dc1/near-contract-standards/src/fungible_token/core_impl.rs#L121
+fn ft_transfer(&mut self, receiver_id: AccountId, amount: U128, memo: Option<String>) {
+    // ...
+    let sender_id = env::predecessor_account_id();
+    let amount: Balance = amount.into();
+    self.internal_transfer(&sender_id, &receiver_id, amount, memo);
+}
+
+// https://github.com/near/near-sdk-rs/blob/770cbce018a1b6c49d58276a075ace3da96d6dc1/near-contract-standards/src/fungible_token/core_impl.rs#L93
+pub fn internal_transfer(&mut self, sender_id: &AccountId, receiver_id: &AccountId, amount: Balance, memo: Option<String>) {
+    require!(sender_id != receiver_id, "发送者和接收者应该不同");
+    // ...
+}
