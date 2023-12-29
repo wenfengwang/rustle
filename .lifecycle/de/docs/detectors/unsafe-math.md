@@ -31,5 +31,5 @@ let a = b + c;
 Der folgende Code wird empfohlen, um die Additionsoperation mit `overflow-checks=false` durchzuführen
 
 ```rust
-let a = b.checked_add(c);
+let a = b.checked_add(c).expect("Überlauf");
 ```

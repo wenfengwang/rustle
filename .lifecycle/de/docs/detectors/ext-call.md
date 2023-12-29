@@ -1,5 +1,5 @@
 
-## Vertragsübergreifende Aufrufe
+## Aufrufe über Vertragsgrenzen hinweg
 
 ### Konfiguration
 
@@ -8,9 +8,9 @@
 
 ### Beschreibung
 
-Finden Sie alle vertragsübergreifenden Aufrufe.
+Finden Sie alle Aufrufe über Vertragsgrenzen hinweg.
 
-Wir stellen diesen Detektor zur Verfügung, um Benutzern das schnelle Auffinden aller vertragsübergreifenden Aufrufe zur weiteren Analyse zu erleichtern.
+Wir stellen diesen Detektor zur Verfügung, um Benutzern das schnelle Auffinden aller Aufrufe über Vertragsgrenzen hinweg zur weiteren Analyse zu erleichtern.
 
 ### Beispielcode
 
@@ -30,6 +30,6 @@ impl Contract {
 }
 ```
 
-> Das Makro `#[ext_contract(...)]` konvertiert ein Rust-Trait in ein Modul mit statischen Methoden, das es Benutzern ermöglicht, vertragsübergreifende Aufrufe durchzuführen. Jede dieser statischen Methoden nimmt Positionsargumente an, die durch das Trait definiert sind, gefolgt von der `receiver_id`, dem angehängten Deposit und der Gasmenge und gibt ein neues `Promise` zurück.
+> Das Makro `#[ext_contract(...)]` konvertiert ein Rust-Trait in ein Modul mit statischen Methoden, was es Benutzern ermöglicht, Aufrufe über Vertragsgrenzen hinweg zu tätigen. Jede dieser statischen Methoden nimmt Positionsargumente an, die durch das Trait definiert sind, gefolgt von der `receiver_id`, der angehängten Einzahlung und der Gasmenge und gibt ein neues `Promise` zurück.
 
-In diesem Beispiel kann der Vertrag die Summe von `a` und `b` mit dem vertragsübergreifenden Aufruf erhalten (d. h. `ext_calculator::ext(calculator_account_id).sum(a, b)`).
+In diesem Beispiel kann der Vertrag die Summe von `a` und `b` mit dem Aufruf über Vertragsgrenzen hinweg erhalten (d.h., `ext_calculator::ext(calculator_account_id).sum(a, b)`).

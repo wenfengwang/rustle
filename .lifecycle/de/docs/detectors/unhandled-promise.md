@@ -16,4 +16,4 @@ Promise-Ergebnisse sollten immer von einer Callback-Funktion oder einem weiteren
 token.ft_transfer_call(receiver, U128(amount), None, "".to_string());
 ```
 
-In diesem Beispiel ruft der Vertrag `ft_transfer_call` auf, behandelt jedoch das Ergebnis des Promises nicht mit einer spezifizierten Callback-Funktion (z.B. `resolve_transfer`). Daher weiß der Vertrag nicht, ob die Übertragung erfolgreich war. Und wenn die Übertragung fehlschlägt, werden die Vertragszustände nicht zurückgesetzt.
+In diesem Beispiel ruft der Vertrag `ft_transfer_call` auf, verarbeitet aber das Ergebnis des Promises nicht mit einer spezifizierten Callback-Funktion (z.B. `resolve_transfer`). Daher kann der Vertrag nicht feststellen, ob die Übertragung erfolgreich war. Und wenn die Übertragung fehlschlägt, werden die Vertragszustände nicht zurückgesetzt.

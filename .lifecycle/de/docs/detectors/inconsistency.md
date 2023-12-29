@@ -23,4 +23,4 @@ ext::ft_transfer(
 )
 ```
 
-In diesem Beispiel sollte der Vertrag `GAS_FOR_FT_TRANSFER` statt `GAS_FOR_NFT_TRANSFER` verwenden. Diese beiden Konstanten können stark im Wert variieren, und das Gas für den `ft_transfer` könnte unzureichend sein.
+In diesem Beispiel sollte der Vertrag `GAS_FOR_FT_TRANSFER` anstelle von `GAS_FOR_NFT_TRANSFER` verwenden. Diese beiden Konstanten können sich im Wert stark unterscheiden, und das Gas für den `ft_transfer` könnte unzureichend sein.

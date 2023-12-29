@@ -15,7 +15,7 @@ Ohne dieses Makro kann jeder die R체ckruffunktion aufrufen, was gegen das urspr�
 ### Beispielcode
 
 ```rust
-pub fn callback_stake(&mut self) { // das ist eine R체ckruffunktion
+pub fn callback_stake(&mut self) { // dies ist eine R체ckruffunktion
     // ...
 }
 ```
@@ -24,7 +24,7 @@ Die Funktion `callback_stake` sollte mit `#[private]` dekoriert werden:
 
 ```rust
 #[private]
-pub fn callback_stake(&mut self) { // das ist eine R체ckruffunktion
+pub fn callback_stake(&mut self) { // dies ist eine R체ckruffunktion
     // ...
 }
 ```

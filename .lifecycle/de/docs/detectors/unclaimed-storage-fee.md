@@ -12,7 +12,7 @@ Gemäß [NEP-145](https://github.com/near/NEPs/blob/master/neps/nep-0145.md#5-ac
 
 ### Beispielcode
 
-Hier ist ein falsches Beispiel für `storage_unregister`:
+Hier ist ein fehlerhaftes Beispiel für `storage_unregister`:
 
 ```rust
 fn storage_unregister(&mut self, force: Option<bool>) -> bool {

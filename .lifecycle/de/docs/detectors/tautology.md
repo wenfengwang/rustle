@@ -8,7 +8,7 @@
 
 ### Beschreibung
 
-Finden Sie einfache Tautologien (`true` oder `false` in der Bedingung), die einen Zweig deterministisch machen.
+Finden Sie eine einfache Tautologie (`true` oder `false` in der Bedingung), die einen Zweig deterministisch macht.
 
 ### Beispielcode
 
@@ -21,4 +21,4 @@ if true || ok {
 }
 ```
 
-In diesem Beispiel wird der Code im `else`-Zweig niemals ausgeführt. Der Grund dafür ist, dass `true || ok` eine Tautologie ist.
+In diesem Beispiel wird der Code im `else`-Zweig niemals ausgeführt. Dies liegt daran, dass `true || ok` eine Tautologie ist.

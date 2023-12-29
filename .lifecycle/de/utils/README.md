@@ -3,12 +3,12 @@
 
 Exportieren Sie einfach Vertragsfunktionen und -variablen auf die ausgewählte Notion-Seite.
 
-⚠WARNUNG: experimentell, Änderungen vorbehalten.
+⚠WARNUNG: Experimentell, Änderungen vorbehalten.
 
 ## Wie man es benutzt
 
-1. Erstellen Sie eine Integration auf `developer.notion.com` und erhalten Sie einen API-Schlüssel. Vergessen Sie nicht, die Projektseite für diese Integration freizugeben.
-2. Erstellen Sie eine dedizierte Seite für ein Audit-Projekt und ermitteln Sie deren ID (eine UUID-ähnliche Zeichenkette mit optionalen `-`).
+1. Erstellen Sie eine Integration auf `developer.notion.com` und erhalten Sie einen API-Schlüssel. Vergessen Sie nicht, die Projektseite mit dieser Integration zu teilen.
+2. Erstellen Sie eine eigene Seite für ein Audit-Projekt und ermitteln Sie deren ID (eine UUID-ähnliche Zeichenkette, optional mit `-`).
 3. Ein stabiler Proxy wird benötigt.
 
 ## Skript

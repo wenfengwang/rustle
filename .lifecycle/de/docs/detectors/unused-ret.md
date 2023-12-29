@@ -1,5 +1,5 @@
 
-## Unbenutzte Rückgabewerte einer nicht-void Funktion
+## Unbenutzte Rückgabewerte von Nicht-Void-Funktionen
 
 ### Konfiguration
 
@@ -8,7 +8,7 @@
 
 ### Beschreibung
 
-Der Rückgabewert von Funktionen sollte verwendet werden. Andernfalls können einige Informationen verloren gehen oder nicht überprüft werden.
+Der Rückgabewert von Funktionen sollte genutzt werden. Andernfalls können Informationen verloren gehen oder nicht überprüft werden.
 
 ### Beispielcode
 
@@ -38,7 +38,7 @@ impl Contract {
 }
 ```
 
-In diesem Beispiel überprüft der Vertrag nicht den Rückgabewert von `remove`, um sicherzustellen, dass der `guardian` in `self.guardians` vorhanden ist. Wenn der `guardian` nicht vorhanden ist, wird das Programm nicht in einen Fehlerzustand versetzt, was unerwartete Auswirkungen haben kann.
+In diesem Beispiel überprüft der Vertrag nicht den Rückgabewert von `remove`, um sicherzustellen, dass der `guardian` in `self.guardians` vorhanden ist. Wenn der `guardian` nicht existiert, wird das Programm nicht in einen Fehlerzustand versetzt, was unerwartete Auswirkungen haben kann.
 
 Eine mögliche korrigierte Version ist wie folgt:
 
@@ -47,13 +47,13 @@ Eine mögliche korrigierte Version ist wie folgt:
 pub fn remove_guardians(&mut self, guardians: Vec<ValidAccountId>) -> Vec<ValidAccountId> {
     assert_one_yocto();
     self.assert_owner();
-    let mut guardians_left = vec![];
+    let mut verbleibende_guardians = vec![];
     for guardian in guardians {
         if !self.guardians.remove(guardian.as_ref()) {
-            guardians_left.push(guardian);
+            verbleibende_guardians.push(guardian);
         }
     }
-    guardians_left
+    verbleibende_guardians
 }
 ```
 

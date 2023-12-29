@@ -14,11 +14,11 @@ Verträge sollten immer ihren Zustand ändern, bevor sie einen Cross-Contract-Au
 
 ### Beispielcode
 
-Hier ist ein Beispiel für einen Reentrancy-Angriff. Der Opfervertrag aktualisiert den Zustand (d. h. `attacker_balance`) in der Funktion `ft_resolve_transfer` erst nach erfolgreicher Überweisung an den Angreifer.
+Hier ist ein Beispiel für einen Reentrancy-Angriff. Der Opfervertrag aktualisiert den Zustand (d. h. `attacker_balance`) in der Funktion `ft_resolve_transfer` erst nach erfolgreicher Übertragung an den Angreifer.
 
-Der Opfervertrag ruft `ft_token::ft_transfer_call` auf, um Token zu übertragen, was nach der internen Überweisung den `ft_on_transfer` des Angreifers aufruft.
+Der Opfervertrag ruft `ft_token::ft_transfer_call` auf, um Token zu übertragen, was nach der internen Übertragung den `ft_on_transfer` des Angreifers aufruft.
 
-Wenn jedoch der `ft_on_transfer` des Angreifers den `withdraw` des Opfers erneut aufruft, wird das Opfer erneut an den Angreifer überweisen, da der Zustand (d. h. `attacker_balance`) noch nicht geändert wurde.
+Wenn jedoch der `ft_on_transfer` des Angreifers den `withdraw` des Opfers erneut aufruft, wird das Opfer erneut an den Angreifer übertragen, da der Zustand (d. h. `attacker_balance`) noch nicht geändert wurde.
 
 Das Aufrufdiagramm ist:
 
@@ -114,7 +114,7 @@ impl VictimContract {
 }
 ```
 
-Die korrekte Implementierung besteht darin, den Zustand vor dem Aufruf einer externen Funktion zu ändern und den Zustand nur dann wiederherzustellen, wenn das Versprechen fehlschlägt.
+Die korrekte Implementierung besteht darin, den Zustand vor dem Aufruf einer externen Funktion zu ändern und den Zustand nur dann wiederherzustellen, wenn das Promise fehlschlägt.
 
 ```rust
 #[near_bindgen]

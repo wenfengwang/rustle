@@ -8,11 +8,11 @@
 
 ### Beschreibung
 
-Jedes Mal, wenn der Zustand wächst, sollte sichergestellt werden, dass genügend Guthaben vorhanden ist, um die Erweiterung zu decken.
+Jedes Mal, wenn der Zustand wächst, sollte sichergestellt werden, dass genügend Balance vorhanden ist, um die Erweiterung zu decken.
 
 ### Beispielcode
 
-Im folgenden Code erweitert sich die Speichernutzung nach dem Einfügen in `self.banks`. Die Differenz sollte überprüft werden, um sicherzustellen, dass die vom Aufrufer angehängte Speicher-Gebühr ausreichend ist.
+Im folgenden Code erweitert sich die Speichernutzung nach dem Einfügen in `self.banks`. Es sollte überprüft werden, ob die vom Aufrufer bereitgestellte Speichergebühr ausreichend ist.
 
 ```rust
 let prev_storage = env::storage_usage();
@@ -24,6 +24,6 @@ self.banks.insert(&Bank {
 
 assert!(
     env::attached_deposit() > ((env::storage_usage() - prev_storage) as u128 * env::storage_byte_cost()),
-    "nicht genügend Speicher-Gas"
+    "nicht genügend Speichergas"
 );
 ```

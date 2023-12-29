@@ -27,7 +27,7 @@ if actual_approval_id.is_none() {
     env::panic_str("Sender nicht genehmigt");
 }
 
-// Wenn eine `approval_id` enthalten ist, überprüfe, ob sie übereinstimmt
+// Wenn `approval_id` enthalten ist, überprüfe, ob sie übereinstimmt
 require!(
     approval_id.is_none() || actual_approval_id == approval_id.as_ref(),
     format!(

@@ -1,5 +1,5 @@
 
-## Unzulässiger Einsatz von `#[private]` in Nicht-Callback-Funktionen
+## Unangemessene Verwendung von `#[private]` in Nicht-Callback-Funktionen
 
 ### Konfiguration
 
@@ -8,7 +8,7 @@
 
 ### Beschreibung
 
-Das Makro `#[private]` wird üblicherweise in Callback-Funktionen verwendet, um sicherzustellen, dass `current_account_id` gleich `predecessor_account_id` ist. Es sollte nicht in Nicht-Callback-Funktionen verwendet werden. Andernfalls wird aus einer öffentlichen Funktion eine interne.
+Das Makro `#[private]` wird üblicherweise in Callback-Funktionen verwendet, um sicherzustellen, dass `current_account_id` gleich `predecessor_account_id` ist. Es sollte nicht in Nicht-Callback-Funktionen verwendet werden. Andernfalls würde eine öffentliche Funktion zu einer internen.
 
 ### Beispielcode
 
@@ -22,4 +22,4 @@ impl Pool {
 }
 ```
 
-`get_tokens` sollte eine öffentliche Schnittstelle (eine öffentliche Funktion ohne das `#[private]`-Makro) sein, damit jeder alle Token-Arten in einem Pool einsehen kann. Sie sollte nicht mit `#[private]` dekoriert werden.
+`get_tokens` sollte eine öffentliche Schnittstelle sein (eine öffentliche Funktion ohne das `#[private]`-Makro), damit jeder alle Token-Arten in einem Pool einsehen kann. Sie sollte nicht mit `#[private]` dekoriert werden.

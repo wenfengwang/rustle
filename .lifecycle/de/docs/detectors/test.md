@@ -8,7 +8,7 @@
 
 ### Beschreibung
 
-Finden Sie Schleifen mit komplexer Logik, die zu DoS-Problemen führen können.
+Findet Schleifen, die komplexe Logik enthalten und zu DoS-Problemen führen können.
 
 Es wird empfohlen, die Anzahl der Iterationen zu begrenzen, um das DoS-Problem zu vermeiden.
 
@@ -37,4 +37,4 @@ impl Contract {
 
 In diesem Beispiel können Benutzer ohne Speicherentgelt registriert werden, sodass die `users`-Liste eine sehr lange `len()` haben kann.
 
-Nehmen wir an, die Funktion `complex_calc` beinhaltet viele komplexe Berechnungen und kann viel Gas verbrauchen.
+Nehmen wir an, die Funktion `complex_calc` beinhaltet viele komplexe Berechnungen und könnte viel Gas verbrauchen.

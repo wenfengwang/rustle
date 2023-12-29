@@ -8,11 +8,11 @@
 
 ### Beschreibung
 
-Privilegierte Funktionen sollten überprüfen, ob ein yocto NEAR angehängt ist. Dies ermöglicht die Aktivierung der 2FA in der NEAR-Wallet aus Sicherheitsgründen.
+Privilegierte Funktionen sollten überprüfen, ob ein Yocto NEAR angehängt ist. Dies ermöglicht die Aktivierung der 2FA in der NEAR-Wallet aus Sicherheitsgründen.
 
 Dies kann im Vertrag durch Hinzufügen von `assert_one_yocto` implementiert werden, was für alle privilegierten Funktionen empfohlen wird.
 
-Hinweis: Es ist schwierig, alle privilegierten Funktionen ohne semantische Informationen zu lokalisieren. Derzeit betrachtet **Rustle** alle Funktionen, die `predecessor_account_id` in Vergleichen verwenden, als privilegierte Funktionen.
+Hinweis: Es ist schwierig, alle privilegierten Funktionen ohne semantische Informationen zu lokalisieren. Derzeit betrachtet **Rustle** alle Funktionen, die `predecessor_account_id` in Vergleichen verwenden, als privilegierte.
 
 ### Beispielcode
 
@@ -34,4 +34,4 @@ pub fn set_owner(&mut self, owner_id: ValidAccountId) {
 }
 ```
 
-In diesem Beispiel ist `set_owner` eine privilegierte Funktion und sollte nur vom Vertragseigentümer aufgerufen werden. Die Funktion `assert_owner` stellt die Berechtigung sicher, indem sie ihre `predecessor_account_id` überprüft. Diese Funktion sollte aus Sicherheitsgründen eine 2FA haben, und dies kann durch das Hinzufügen eines Aufrufs von `assert_one_yocto` in der Funktion implementiert werden.
+In diesem Beispiel ist `set_owner` eine privilegierte Funktion und sollte nur vom Vertragseigentümer aufgerufen werden. Die Funktion `assert_owner` stellt die Berechtigung sicher, indem sie ihre `predecessor_account_id` überprüft. Diese Funktion sollte aus Sicherheitsgründen eine 2FA haben, und dies kann durch Hinzufügen eines Aufrufs von `assert_one_yocto` in der Funktion implementiert werden.

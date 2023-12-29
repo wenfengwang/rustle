@@ -8,7 +8,7 @@
 
 ### Beschreibung
 
-Verträge benötigen möglicherweise die Upgrade-Funktion. **Rustle** wird überprüfen, ob eine solche Schnittstelle im Vertrag vorhanden ist.
+Verträge benötigen möglicherweise die Upgrade-Funktion. **Rustle** wird überprüfen, ob eine solche Schnittstelle im Vertrag existiert.
 
 Ohne eine Upgrade-Funktion kann der Vertrag nicht aktualisiert und der Vertragszustand nicht migriert werden.
 
@@ -66,14 +66,14 @@ mod upgrade {
             );
             // Planung der Rückgabe der Konfiguration nach Abschluss der Migration.
             //
-            // Die Upgrade-Methode fügt sie als Aktion hinzu, sodass das gesamte Upgrade einschließlich der
-            // Deploy-Contract-Aktion und der Migration zurückgerollt werden kann, wenn der Konfigurations-View-Aufruf nicht 
-            // erfolgreich zurückgegeben werden kann. Der View-Aufruf deserialisiert den Zustand und deserialisiert die
-            // Konfiguration, die die owner_id enthält. Wenn der Vertrag die aktuelle Konfiguration deserialisieren kann,
-            // dann kann er den Eigentümer validieren und das Upgrade erneut ausführen (falls das vorherige
-            // Upgrade/die Migration schlecht verlief).
+            // Die Upgrade-Methode fügt sie als Aktion hinzu, sodass das gesamte Upgrade einschließlich
+            // Deploy-Contract-Aktion und Migration zurückgerollt werden kann, wenn der Konfigurations-View-Aufruf
+            // nicht erfolgreich zurückgegeben werden kann. Der View-Aufruf deserialisiert den Zustand und
+            // deserialisiert die Konfiguration, die die owner_id enthält. Wenn der Vertrag die aktuelle Konfiguration
+            // deserialisieren kann, dann kann er den Eigentümer validieren und das Upgrade erneut ausführen
+            // (falls das vorherige Upgrade/die Migration schlecht verlief).
             //
-            // Es ist eine zusätzliche Sicherheitsmaßnahme für die Fern-Vertrags-Upgrades.
+            // Es ist eine zusätzliche Sicherheitsvorkehrung für die Fern-Vertrags-Upgrades.
             sys::promise_batch_action_function_call(
                 promise_id,
                 get_config_method_name.len() as _,

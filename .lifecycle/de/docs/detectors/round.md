@@ -1,5 +1,5 @@
 
-## Unkorrekte Rundung ohne Angabe von `ceil` oder `floor`
+## Unzulässige Rundung ohne Angabe von `ceil` oder `floor`
 
 ### Konfiguration
 
@@ -8,7 +8,7 @@
 
 ### Beschreibung
 
-Es wird überprüft, ob bei arithmetischen Operationen Rundungen verwendet werden. Rundungen ohne Richtungsangabe können im DeFi-Bereich ausgenutzt werden. Siehe [How to Become a Millionaire, 0.000001 BTC at a Time (neodyme.io)](https://blog.neodyme.io/posts/lending_disclosure/) für weitere Details.
+Es wird überprüft, ob bei arithmetischen Operationen Rundungen verwendet werden. Rundungen ohne Richtungsangabe können im DeFi-Bereich ausgenutzt werden. Weitere Details finden Sie unter [Wie man Millionär wird, 0,000001 BTC auf einmal (neodyme.io)](https://blog.neodyme.io/posts/lending_disclosure/).
 
 Hinweis: **Rustle** wird keine Rundungsfunktionen melden, die von Entwicklern für spezifische Zwecke implementiert wurden.
 
@@ -18,4 +18,4 @@ Hinweis: **Rustle** wird keine Rundungsfunktionen melden, die von Entwicklern f�
 let fee = (amount * fee_rate).round();
 ```
 
-In diesem Beispiel sollten Vertragsentwickler nicht `round` zur Berechnung der Gebühr verwenden. Sie sollten stattdessen `ceil` oder `floor` verwenden, um die Rundungsrichtung festzulegen.
+In diesem Beispiel sollten Vertragsentwickler nicht `round` zur Berechnung der Gebühr verwenden. Sie sollten stattdessen `ceil` oder `floor` nutzen, um die Rundungsrichtung festzulegen.

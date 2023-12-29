@@ -8,9 +8,9 @@
 
 ### Beschreibung
 
-Es wird nicht empfohlen, `assert` oder `require` oder etwas Ähnliches zu verwenden, das in einer Callback-Funktion zu einer Panik führen kann.
+Es wird nicht empfohlen, `assert`, `require` oder ähnliche Anweisungen, die zu einer Panik führen können, in einer Callback-Funktion zu verwenden.
 
-In NEAR muss die Callback-Funktion einige Zustandsänderungen rückgängig machen, die durch ein fehlgeschlagenes Promise verursacht wurden. Wenn die Callback-Funktion in Panik gerät, wird der Zustand möglicherweise nicht vollständig wiederhergestellt, was zu unerwarteten Ergebnissen führen kann.
+In NEAR muss die Callback-Funktion einige Zustandsänderungen rückgängig machen, die durch ein fehlgeschlagenes Promise verursacht wurden. Wenn die Callback-Funktion in Panik gerät, wird der Zustand möglicherweise nicht vollständig wiederhergestellt, was zu unerwarteten Ergebnissen führt.
 
 ### Beispielcode
 
@@ -37,6 +37,6 @@ pub fn callback_transfer(&mut self, order_id: u32) {
 }
 ```
 
-In diesem Beispiel löscht der Vertrag zuerst die Bestellung und führt dann die Token-Übertragung durch. Sollte die Übertragung fehlschlagen, muss die Bestellung in `callback_transfer` wiederhergestellt werden.
+In diesem Beispiel löscht der Vertrag zuerst die Bestellung und führt dann die Token-Übertragung durch. Wenn die Übertragung fehlschlägt, sollte die Bestellung in `callback_transfer` wiederhergestellt werden.
 
-Allerdings gibt es ein `assert` in der Callback-Funktion; schlägt dieses fehl, wird die Bestellung nicht wiederhergestellt.
+Allerdings gibt es ein `assert` in der Callback-Funktion; wenn dieses fehlschlägt, wird die Bestellung nicht wiederhergestellt.

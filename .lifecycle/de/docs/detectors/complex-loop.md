@@ -39,6 +39,6 @@ In diesem Beispiel können Benutzer ohne Speicherentgelt registriert werden, sod
 
 Nehmen wir an, die Funktion `complex_calc` beinhaltet viele komplexe Berechnungen und kann viel Gas verbrauchen.
 
-In `update_all_users` iteriert eine Schleife über `users` und ruft dabei die Funktion `complex_calc` auf. Dies kann dazu führen, dass das gesamte Gas aufgebraucht wird.
+In `update_all_users` iteriert eine Schleife über `users` und ruft die Funktion `complex_calc` auf. Dies kann dazu führen, dass das gesamte Gas aufgebraucht wird.
 
-Ein böswilliger Benutzer könnte den Angriff durchführen, indem er massenhaft Benutzer registriert, ohne ein Speicherentgelt zu entrichten.
+Ein bösartiger Benutzer könnte den Angriff durchführen, indem er massenhaft Benutzer registriert, ohne Speicherentgelt zu zahlen.

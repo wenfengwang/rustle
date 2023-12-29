@@ -1,5 +1,5 @@
 
-## Doppelte ID-Verwendung in Kollektionen
+## Doppelte ID-Verwendung in Sammlungen
 
 ### Konfiguration
 
@@ -8,7 +8,7 @@
 
 ### Beschreibung
 
-Kollektionen im NEAR SDK verwenden die Funktion `new`, um sich zu initialisieren.
+Sammlungen im NEAR SDK verwenden die Funktion `new`, um sich zu initialisieren.
 
 ```rust
 pub fn new<S>(prefix: S) -> Self
@@ -16,7 +16,7 @@ where
     S: IntoStorageKey,
 ```
 
-Das Argument `prefix` ist ein Identifikator für die Kollektion. Jede Kollektion sollte eine ID haben, die sich von der ID anderer Kollektionen unterscheidet.
+Das Argument `prefix` ist ein Bezeichner für die Sammlung. Jede Sammlung sollte eine ID haben, die sich von der ID anderer Sammlungen unterscheidet.
 
 ### Beispielcode
 

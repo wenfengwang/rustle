@@ -1,5 +1,5 @@
 
-## Transfer-Aktion
+## Transferaktion
 
 ### Konfiguration
 
@@ -8,9 +8,9 @@
 
 ### Beschreibung
 
-Finden Sie alle Transfer-Aktionen.
+Finden Sie alle Transferaktionen.
 
-Dieser Detektor kann dabei helfen, alle Transfer-Aktionen sowohl für native Tokens als auch für NEP-141-Tokens zu lokalisieren.
+Dieser Detektor kann dabei helfen, alle Transferaktionen sowohl für native Token als auch für NEP-141-Token zu lokalisieren.
 
 ### Beispielcode
 
@@ -20,7 +20,7 @@ Promise::new(env::predecessor_account_id()).transfer(amount);
 ```
 
 ```rust
-// NEP-141 ft_transfer
+// NEP141 ft_transfer
 // https://github.com/ref-finance/ref-contracts/blob/c580d8742d80033a630a393180163ab70f9f3c94/ref-exchange/src/account_deposit.rs#L446
 ext_fungible_token::ft_transfer(
     sender_id.clone(),
@@ -40,4 +40,4 @@ ext_fungible_token::ft_transfer(
 ))
 ```
 
-In diesen Beispielen können sowohl der Transfer von nativen Tokens als auch der Transfer von NEP-141-Tokens durch **Rustle** erkannt werden.
+In diesen Beispielen können sowohl der native Token-Transfer als auch der NEP-141-Token-Transfer von **Rustle** erkannt werden.

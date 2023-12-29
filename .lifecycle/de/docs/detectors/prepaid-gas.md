@@ -1,5 +1,5 @@
 
-## Fehlende Überprüfung des Prepaid-Gases in `ft_transfer_call`
+## Fehlende Überprüfung von Prepaid-Gas in `ft_transfer_call`
 
 ### Konfiguration
 
@@ -8,7 +8,7 @@
 
 ### Beschreibung
 
-In `ft_transfer_call` sollte der Vertrag prüfen, ob das `prepaid_gas` für `ft_on_transfer` und `ft_resolve_transfer` ausreichend ist, bevor ein Cross-Contract-Aufruf initiiert wird.
+In `ft_transfer_call` sollte der Vertrag prüfen, ob das Prepaid-Gas für `ft_on_transfer` und `ft_resolve_transfer` ausreichend ist, bevor ein Cross-Contract-Aufruf initiiert wird.
 
 ### Beispielcode
 

@@ -10,7 +10,7 @@
 [![AwesomeNEAR](https://img.shields.io/badge/Project-AwesomeNEAR-054db4)](https://awesomenear.com/rustle)
 [![Devpost](https://img.shields.io/badge/Honorable%20Mention-Devpost-003e54)](https://devpost.com/software/rustle)
 
-Rustle ist ein automatischer statischer Analysator für NEAR-Smart-Contracts in Rust. Es kann helfen, Dutzende verschiedener Schwachstellen in NEAR-Smart-Contracts zu lokalisieren.
+Rustle ist ein automatischer statischer Analysator für NEAR-Smart-Contracts in Rust. Es kann dabei helfen, Dutzende verschiedener Schwachstellen in NEAR-Smart-Contracts zu lokalisieren.
 Laut [DefiLlama](https://defillama.com/chain/Near) wurden acht der Top-10-DApps in NEAR von BlockSec geprüft. Mit umfassender Prüfungserfahrung und einem tiefen Verständnis des NEAR-Protokolls haben wir dieses Tool entwickelt und teilen es mit der Community.
 
 ## Loslegen
@@ -22,47 +22,47 @@ Laut [DefiLlama](https://defillama.com/chain/Near) wurden acht der Top-10-DApps 
 Installieren Sie die erforderlichen Toolkits mit den folgenden Befehlen für **Rustle** unter Linux. Die Befehle wurden unter Ubuntu 20.04 LTS getestet.
 
 ```bash
-# Rust-Toolchain installieren
+# install Rust Toolchain
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
-# LLVM 15 installieren
+# install LLVM 15
 sudo bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)" 15
 
-# Python-Toolchain installieren
-sudo apt install python3 python3-pip    # erfordert Python >= 3.8
-pip3 install -r utils/requirements.txt  # Sie müssen dieses Repo zuerst klonen
+# install Python toolchain
+sudo apt install python3 python3-pip    # requires python >= 3.8
+pip3 install -r utils/requirements.txt  # you need to clone this repo first
 
-# WASM-Ziel hinzufügen
+# add WASM target
 rustup target add wasm32-unknown-unknown
 
-# weitere Komponenten installieren
+# install other components
 sudo apt install figlet
 cargo install rustfilt
 
-# [optional] nützliche Tools für die Entwicklung
+# [optional] useful tools for developing
 LLVM_VERSION=
 sudo apt install clangd-$LLVM_VERSION clang-format-$LLVM_VERSION clang-tidy-$LLVM_VERSION
 ```
 
 #### macOS-Setup
 
-Die folgenden Befehle sind für Benutzer, die macOS verwenden, und wurden nur auf Apple-Silicon-Macs getestet, daher sollten sie mit Vorsicht verwendet werden.
+Die folgenden Befehle richten sich an Benutzer, die macOS verwenden. Sie wurden nur auf Apple Silicon Macs getestet, daher ist Vorsicht geboten.
 
 ```bash
-# Rust-Toolchain installieren
+# install Rust Toolchain
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
-# LLVM 15 installieren
+# install LLVM 15
 brew install llvm@15
 
-# Python-Pakete installieren
-pip3 install -r utils/requirements.txt  # Sie müssen dieses Repo zuerst klonen
-                                        # unter Verwendung der macOS-Standardversion von Python3
+# install Python packages
+pip3 install -r utils/requirements.txt  # you need to clone this repo first
+                                        # using macOS default python3
 
-# WASM-Ziel hinzufügen
+# add WASM target
 rustup target add wasm32-unknown-unknown
 
-# weitere Komponenten installieren
+# install other components
 brew install figlet coreutils gsed
 cargo install rustfilt
 ```
@@ -72,13 +72,13 @@ cargo install rustfilt
 Wir bieten eine Docker-Lösung an.
 
 ```bash
-# Bild erstellen
+# build the image
 docker build --build-arg UID=`id -u` --build-arg GID=`id -g` -t rustle .
 
-# Container aus dem Bild ausführen
+# run a container from the image
 docker run --name rustle -it -v `pwd`:/rustle -w /rustle rustle bash
 
-# Container ausführen
+# exec the container
 docker start rustle
 docker exec -it -w /rustle rustle bash
 ```
@@ -89,27 +89,27 @@ docker exec -it -w /rustle rustle bash
 ./rustle [-t|--tg_dir <tg_dir>] [-d|--detector <detector_list>] [-o|--output <output_dir>] [-h|--help] <src_dir>
 ```
 
-* `src_dir`: Pfad zur Quelle des Vertrags.
-* `tg_dir`: Pfad zum Build-Ziel des Vertrags. Standardmäßig identisch mit `src_dir`.
-* `detector`: Die Detektorliste. Sie kann verwendet werden, um mehrere *Detektoren* oder *Gruppen* getrennt durch `,` zu übergeben. Standardmäßig auf `all` gesetzt.
-  *   Übergeben Sie die `all`-Gruppe, um alle Detektoren zu aktivieren.
-  *   Übergeben Sie die Gruppen `high`, `medium`, `low` und `info`, um Detektorgruppen mit unterschiedlichem Schweregrad zu aktivieren (siehe [Detektoren](#detectors)).
-  *   Übergeben Sie die Gruppen `nep-ft`, `nep-storage` und `nep-nft`, um Detektoren zu aktivieren, die für bestimmte NEPs implementiert sind (siehe [NEP-Detektorgruppen](#nep-detector-groups)).
-  *   Übergeben Sie Detektor-IDs aus der [Tabelle](#detectors), um diese Detektoren zu aktivieren.
+* `src_dir`: Pfad zur Vertragsquelle.
+* `tg_dir`: Pfad zum Vertrags-Build-Ziel. Standardmäßig identisch mit `src_dir`.
+* `detector`: Die Detektorliste. Sie kann verwendet werden, um mehrere *Detektoren* oder *Gruppen* getrennt durch `,` zu übergeben. Standardmäßig `all`.
+  *   Übergeben Sie `all` als *Gruppe*, um alle Detektoren zu aktivieren.
+  *   Übergeben Sie `high`, `medium`, `low` und `info` als *Gruppen*, um Detektorgruppen mit unterschiedlichem Schweregrad zu aktivieren (siehe [Detektoren](#detectors)).
+  *   Übergeben Sie `nep-ft`, `nep-storage` und `nep-nft` als *Gruppen*, um Detektoren zu aktivieren, die für bestimmte NEPs implementiert sind (siehe [NEP-Detektorgruppen](#nep-detector-groups)).
+  *   Übergeben Sie *Detektor-IDs* aus der [Tabelle](#detectors), um diese Detektoren zu aktivieren.
 * `output`: Pfad, in dem Prüfberichte generiert werden. Standardmäßig `./audit-result`.
 
-Hinweis: Wenn der von Cargo erstellte Ziel-Bitcode (`.bc`-Datei) nicht im `src_dir` liegt, verwenden Sie `-t|--tg_dir`, um das Verzeichnis des Ziels festzulegen, sonst wird es standardmäßig auf `src_dir` gesetzt.
+Hinweis: Wenn der von Cargo erstellte Zielbitcode (`.bc`-Datei) nicht im `src_dir` liegt, verwenden Sie `-t|--tg_dir`, um das Verzeichnis des Ziels festzulegen, sonst wird es standardmäßig auf `src_dir` gesetzt.
 
 Der folgende Befehl zeigt ein Beispiel für die Analyse von LiNEAR.
 
 ```bash
-# LiNEAR klonen
+# clone LiNEAR
 git clone https://github.com/linear-protocol/LiNEAR.git ~/near-repo/LiNEAR
 
-# Rustle ausführen
+# run Rustle
 ./rustle -t ~/near-repo/LiNEAR ~/near-repo/LiNEAR/contracts/linear
 
-# [optional] Rustle mit spezifizierten Detektoren oder Schweregradgruppen ausführen und Prüfberichte in `~/linear-report` speichern
+# [optional] run Rustle on specified detectors or severity groups and save audit reports in `~/linear-report`
 ./rustle -t ~/near-repo/LiNEAR ~/near-repo/LiNEAR/contracts/linear -d high,medium,complex-loop -o ~/linear-report
 ```
 
@@ -123,8 +123,8 @@ Alle Schwachstellen, die **Rustle** finden kann.
 |---|---|---|
 |`unhandled-promise`|[findet `Promises`, die nicht behandelt werden](docs/detectors/unhandled-promise.md)|Hoch|
 |`non-private-callback`|[fehlendes Makro `#[private]` für Callback-Funktionen](docs/detectors/non-private-callback.md)|Hoch|
-|`reentrancy`|[findet Funktionen, die anfällig für Reentrancy-Angriffe sind](docs/detectors/reentrancy.md)|Hoch|
-|`unsafe-math`|[fehlende Überlaufprüfung bei arithmetischen Operationen](docs/detectors/unsafe-math.md)|Hoch|
+|`reentrancy`|[findet Funktionen, die anfällig für Wiedereintrittsangriffe sind](docs/detectors/reentrancy.md)|Hoch|
+|`unsafe-math`|[fehlende Überlaufprüfung für arithmetische Operationen](docs/detectors/unsafe-math.md)|Hoch|
 |`self-transfer`|[fehlende Überprüfung von `sender != receiver`](docs/detectors/self-transfer.md)|Hoch|
 |`incorrect-json-type`|[falscher Typ in Parametern oder Rückgabewerten verwendet](docs/detectors/incorrect-json-type.md)|Hoch|
 |`unsaved-changes`|[Änderungen an Sammlungen werden nicht gespeichert](docs/detectors/unsaved-changes.md)|Hoch|
@@ -138,13 +138,13 @@ Alle Schwachstellen, die **Rustle** finden kann.
 |`unregistered-receiver`|[keine Panik bei nicht registrierten Übertragungsempfängern](docs/detectors/unregistered-receiver.md)|Mittel|
 |`nep${id}-interface`|[findet alle nicht implementierten NEP-Schnittstellen](docs/detectors/nep-interface.md)|Mittel|
 |`prepaid-gas`|[fehlende Überprüfung des vorausbezahlten Gases in `ft_transfer_call`](docs/detectors/prepaid-gas.md)|Niedrig|
-|`non-callback-private`|[Makro `#[private]` in Nicht-Callback-Funktion verwendet](docs/detectors/non-callback-private.md)|Niedrig|
+|`non-callback-private`|[Makro `#[private]` wird in Nicht-Callback-Funktion verwendet](docs/detectors/non-callback-private.md)|Niedrig|
 |`unused-ret`|[Funktionsergebnis wird nicht verwendet oder überprüft](docs/detectors/unused-ret.md)|Niedrig|
 |`upgrade-func`|[keine Upgrade-Funktion im Vertrag](docs/detectors/upgrade-func.md)|Niedrig|
-|`tautology`|[Tautologie in bedingtem Zweig verwendet](docs/detectors/tautology.md)|Niedrig|
-|`storage-gas`|[fehlende Guthabenprüfung für Speichererweiterung](docs/detectors/storage-gas.md)|Niedrig|
-|`unclaimed-storage-fee`|[fehlende Guthabenprüfung vor Speicherabmeldung](docs/detectors/unclaimed-storage-fee.md)|Niedrig|
-|`inconsistency`|[Verwendung ähnlicher, aber leicht unterschiedlicher Symbole](docs/detectors/inconsistency.md)|Info|
+|`tautology`|[Tautologie wird im bedingten Zweig verwendet](docs/detectors/tautology.md)|Niedrig|
+|`storage-gas`|[fehlende Bilanzprüfung für Speichererweiterung](docs/detectors/storage-gas.md)|Niedrig|
+|`unclaimed-storage-fee`|[fehlende Guthabenprüfung vor der Speicherabmeldung](docs/detectors/unclaimed-storage-fee.md)|Niedrig|
+|`inconsistency`|[Verwendung eines ähnlichen, aber leicht unterschiedlichen Symbols](docs/detectors/inconsistency.md)|Info|
 |`timestamp`|[findet alle Verwendungen von `timestamp`](docs/detectors/timestamp.md)|Info|
 |`complex-loop`|[findet alle Schleifen mit komplexer Logik, die zu DoS führen können](docs/detectors/complex-loop.md)|Info|
 |`ext-call`|[findet alle vertragsübergreifenden Aufrufe](docs/detectors/ext-call.md)|Info|
@@ -155,6 +155,7 @@ Alle Schwachstellen, die **Rustle** finden kann.
 ### NEP-Detektorgruppen
 
 Neben den Gruppen nach Schweregrad bietet **Rustle** einige Detektorgruppen nach entsprechendem NEP an. Derzeit unterstützt **Rustle** die folgenden Gruppen.
+
 
 |NEP|Detektorgruppen-ID|Detektor-IDs|
 |---|---|---|
@@ -169,11 +170,11 @@ Neben den Gruppen nach Schweregrad bietet **Rustle** einige Detektorgruppen nach
 3. Fügen Sie ein Erkennungsziel in [/Makefile](/Makefile) mit Befehlen zum Ausführen Ihres Detektors hinzu.
 4. Fügen Sie das Ziel zur Abhängigkeit des `audit`-Ziels und seinen Namen zur [Detektorliste](/rustle#L146) und [Schweregradgruppen](/rustle#L169) im `./rustle`-Skript hinzu.
 5. Fügen Sie Verarbeitungscode in [utils/audit.py](/utils/audit.py) hinzu (siehe Code anderer Detektoren in `audit.py`).
-6. Senden Sie einen Pull-Request von Ihrem Branch an den Hauptbranch.
+6. Senden Sie eine Pull-Anfrage von Ihrem Branch an den Hauptbranch.
 
 ## Hinweis
 
-**Rustle** kann im Entwicklungsprozess verwendet werden, um NEAR-Smart-Contracts iterativ zu scannen. Dies kann viel manuellen Aufwand sparen und einen Teil potenzieller Probleme abmildern. Allerdings sind Schwachstellen in komplexer Logik oder im Zusammenhang mit Semantik immer noch eine Einschränkung von **Rustle**. Um komplizierte semantische Probleme zu lokalisieren, müssen die Experten von [BlockSec](https://blocksec.com/) umfassende und gründliche Überprüfungen durchführen. [Kontaktieren Sie uns](audit@blocksec.com) für einen Audit-Service.
+**Rustle** kann im Entwicklungsprozess verwendet werden, um NEAR-Smart-Contracts iterativ zu scannen. Dies kann viel manuellen Aufwand einsparen und einen Teil potenzieller Probleme mindern. Allerdings sind Schwachstellen in komplexer Logik oder im Zusammenhang mit Semantik immer noch die Einschränkung von **Rustle**. Um komplizierte semantische Probleme zu lokalisieren, müssen die Experten von [BlockSec](https://blocksec.com/) umfassende und gründliche Überprüfungen durchführen. [Kontaktieren Sie uns](audit@blocksec.com) für einen Audit-Service.
 
 ## Lizenz
 

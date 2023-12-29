@@ -8,7 +8,7 @@
 
 ### Beschreibung
 
-[NEPs](https://github.com/near/NEPs) stehen für Near Enhancement Proposals, welche Änderungen an der Spezifikation und den Standards des NEAR-Protokolls darstellen. Derzeit gibt es NEPs für FT, NFT, MT und Storage, die in einer [Tabelle](https://github.com/near/NEPs#neps) aufgelistet sind.
+[NEPs](https://github.com/near/NEPs) stehen für Near Enhancement Proposals, welche Änderungen an der Spezifikation und den Standards des NEAR-Protokolls darstellen. Derzeit gibt es NEPs für FT, NFT, MT und Storage, aufgelistet in einer [Tabelle](https://github.com/near/NEPs#neps).
 
 Um diesen Detektor zu nutzen, müssen Sie die NEP-ID in der Detektor-ID spezifizieren, zum Beispiel:
 
@@ -20,4 +20,4 @@ Um diesen Detektor zu nutzen, müssen Sie die NEP-ID in der Detektor-ID spezifiz
 
 ### Beispielcode
 
-Das [Beispiel](/examples/nep-interface/) für den Detektor `nep-interface` ist an die near-contract-standards angepasst.
+Das [Beispiel](/examples/nep-interface/) für den Detektor `nep-interface` ist den Near-Contract-Standards entnommen.
