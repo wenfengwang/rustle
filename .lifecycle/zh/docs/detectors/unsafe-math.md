@@ -12,7 +12,7 @@
 
 在 NEAR 合约中，可以通过两种不同的方法实现溢出检查。
 
-1. \[推荐\] 在 Cargo 清单中开启 `overflow-checks`。在这种情况下，使用 `+`、`-` 和 `*` 进行算术运算是安全的。
+1. \[推荐\] 在 Cargo 清单中开启 `overflow-checks`。在这种情况下，可以使用 `+`、`-` 和 `*` 进行算术运算。
 2. 使用安全数学函数（例如，`checked_xxx()`）来进行算术运算。
 
 ### 示例代码
@@ -28,7 +28,7 @@ overflow-checks = false
 let a = b + c;
 ```
 
-当 `overflow-checks=false` 时，建议使用以下代码进行加法运算
+在 `overflow-checks=false` 的情况下进行加法操作，推荐使用以下代码
 
 ```rust
 let a = b.checked_add(c);

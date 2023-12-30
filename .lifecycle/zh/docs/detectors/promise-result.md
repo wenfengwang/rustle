@@ -3,14 +3,14 @@
 
 ### 配置
 
-* 检测器 id：`promise-result`
+* 检测器 ID：`promise-result`
 * 严重性：info
 
 ### 描述
 
-查找所有使用 `env::promise_result` 的地方，它提供了 Promise 执行的结果。
+查找所有使用 `env::promise_result` 的地方，这个函数提供了 promise 执行的结果。
 
-此检测器有助于快速定位处理 Promise 结果逻辑的代码。
+这个检测器有助于快速定位处理 promise 结果的逻辑。
 
 ### 示例代码
 
@@ -22,4 +22,4 @@ let cross_call_result = match env::promise_result(0) {
 };
 ```
 
-在这个示例中，根据 Promise 结果的状态（成功或不成功）来进行相应的处理。
+在这个示例中，根据 promise 的状态（成功或不成功）来处理 promise 结果。

@@ -3,12 +3,12 @@
 
 ### 配置
 
-* 检测器ID：`unclaimed-storage-fee`
+* 检测器 ID：`unclaimed-storage-fee`
 * 严重程度：低
 
 ### 描述
 
-根据 [NEP-145](https://github.com/near/NEPs/blob/master/neps/nep-0145.md#5-account-gracefully-closes-registration)，如果账户所有者尝试关闭账户，他需要在余额为零的情况下注销存储，除非设置了`force`标志。因此，NEP-145的实现应遵循此规则。
+根据 [NEP-145](https://github.com/near/NEPs/blob/master/neps/nep-0145.md#5-account-gracefully-closes-registration)，如果账户所有者尝试关闭账户，他需要在余额为零的情况下取消注册存储，除非设置了`force`标志。因此，NEP-145的实现应遵循此规则。
 
 ### 示例代码
 

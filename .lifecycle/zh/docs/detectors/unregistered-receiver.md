@@ -8,13 +8,13 @@
 
 ### 描述
 
-根据[NEP-141](https://github.com/near/NEPs/blob/master/neps/nep-0141.md)的[实现](https://github.com/near/near-sdk-rs/blob/63ba6ecc9439ec1c319c1094d581653698229473/near-contract-standards/src/fungible_token/core_impl.rs#L58)，如果接收者账户未注册，转账操作应该会触发panic。
+根据[NEP-141](https://github.com/near/NEPs/blob/master/neps/nep-0141.md)的[实现](https://github.com/near/near-sdk-rs/blob/63ba6ecc9439ec1c319c1094d581653698229473/near-contract-standards/src/fungible_token/core_impl.rs#L58)，如果转账的接收者尚未注册，应该会触发panic。
 
-开发者可能会尝试为接收者注册新账户而不请求存储费，这可能导致DoS攻击。账户注册的可能实现可参考[storage_impl.rs](https://github.com/near/near-sdk-rs/blob/1859ce4c201d2a85fbe921fdada1df59b00d2d8c/near-contract-standards/src/fungible_token/storage_impl.rs#L45)
+开发者可能会尝试为接收者注册新账户而不请求存储费，这可能会导致DoS攻击。账户注册的可能实现在[storage_impl.rs](https://github.com/near/near-sdk-rs/blob/1859ce4c201d2a85fbe921fdada1df59b00d2d8c/near-contract-standards/src/fungible_token/storage_impl.rs#L45)
 
 ### 示例代码
 
-下面的代码段展示了两种获取账户（即接收者）余额的方法。安全的方法在账户未注册时会触发panic，而不安全的方法会在未注册时返回默认余额0而不触发panic。在不安全的情况下，一个`AccountId == account_id`的新键将被插入到`accounts`映射中，其存储费用由`Contract`的发起人支付。
+下面的代码段展示了两种解包账户（即接收者）余额的方法。安全的方法在账户未注册时会触发panic，而不安全的方法会在未注册时返回默认余额0且不会panic。在不安全的情况下，一个`AccountId == account_id`的新键将被插入到`accounts`映射中，其存储费用由`Contract`的发起人支付。
 
 完整的示例代码请参考[examples/unregistered-receiver](/examples/unregistered-receiver)。
 

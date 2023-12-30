@@ -8,9 +8,9 @@
 
 ### 描述
 
-在向接收者转移代币之前，合约应检查接收者是否为发送者本人。否则，攻击者可能会利用这一漏洞无限制地铸造代币。
+在将代币转移给接收者之前，合约应检查接收者是否是发送者本身。否则，攻击者可能会利用此漏洞无限制地铸造代币。
 
-查看 [Stader\_\_NEAR Incident Report — 08/16/2022 | by Stader Labs | Medium](https://blog.staderlabs.com/stader-near-incident-report-08-16-2022-afe077ffd549) 和 [Ensure that sender and receiver are not the same in ft_transfer · stader-labs/near-liquid-token@04480ab (github.com)](https://github.com/stader-labs/near-liquid-token/commit/04480abe4585b75a663e1d7fae673da7d7fe7ea3) 了解更多详情。
+查看 [Stader\_\_NEAR Incident Report — 08/16/2022 | by Stader Labs | Medium](https://blog.staderlabs.com/stader-near-incident-report-08-16-2022-afe077ffd549) 和 [确保发送者和接收者不同于 ft_transfer · stader-labs/near-liquid-token@04480ab (github.com)](https://github.com/stader-labs/near-liquid-token/commit/04480abe4585b75a663e1d7fae673da7d7fe7ea3) 获取更多详情。
 
 ### 示例代码
 

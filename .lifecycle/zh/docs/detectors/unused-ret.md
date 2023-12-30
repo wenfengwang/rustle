@@ -38,7 +38,7 @@ impl Contract {
 }
 ```
 
-在此示例中，合约没有检查 `remove` 的返回值以确保 `guardian` 存在于 `self.guardians` 中。如果 `guardian` 不存在，程序将不会产生 panic，这可能带来意外的影响。
+在此示例中，合约没有检查 `remove` 的返回值以确保 `guardian` 存在于 `self.guardians` 中。如果 `guardian` 不存在，程序不会产生 panic，这可能带来意想不到的影响。
 
 一个可能的修正版本如下：
 
@@ -57,4 +57,4 @@ pub fn remove_guardians(&mut self, guardians: Vec<ValidAccountId>) -> Vec<ValidA
 }
 ```
 
-在这个版本中，`remove_guardians` 将返回所有不在 `self.guardians` 中的 `guardians` 的向量。
+在这个版本中，`remove_guardians` 将返回一个包含所有不在 `self.guardians` 中的 `guardians` 的向量。

@@ -1,5 +1,5 @@
 
-## 集合中的 id 重复使用问题
+## 集合中的重复 id 使用
 
 ### 配置
 
@@ -8,7 +8,7 @@
 
 ### 描述
 
-NEAR SDK 中的集合使用 `new` 函数来初始化。
+NEAR SDK 中的集合使用 `new` 函数来初始化自身。
 
 ```rust
 pub fn new<S>(prefix: S) -> Self

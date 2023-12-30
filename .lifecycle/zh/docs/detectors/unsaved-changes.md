@@ -1,5 +1,5 @@
 
-## 集合的更改不会被保存
+## 集合的更改未被保存
 
 ### 配置
 
@@ -8,7 +8,7 @@
 
 ### 描述
 
-[NEAR SDK](https://crates.io/crates/near-sdk) 提供了一些可以存储键值映射的映射集合。你可以使用 `get` 通过键来获取值，并通过调用 `insert` 来插入或覆盖某个键的值。这些集合使用 borsh 进行序列化和反序列化，当你想对一个集合进行更改时，你需要先用 `get` 获取一个现有的值并对其进行更改，然后用 `insert` 将其重新插入集合。如果没有使用 `insert` 函数，更改将不会被保存到合约中。
+[NEAR SDK](https://crates.io/crates/near-sdk) 提供了一些映射集合，可以存储键值对。您可以使用 `get` 通过键来获取值，并通过调用 `insert` 并指定键来插入或覆盖值。这些集合使用 borsh 进行序列化和反序列化。当您想对集合进行更改时，需要先 `get` 一个现有值并对其进行更改，然后再次使用 `insert` 将其插入集合。如果不使用 `insert` 函数，更改将不会被保存到合约中。
 
 请注意，从 NEAR SDK [v4.1.0](https://docs.rs/near-sdk/4.1.0/near_sdk/index.html) 版本开始，开发者可以使用 [`near_sdk::store`](https://docs.rs/near-sdk/4.1.0/near_sdk/store/index.html) 中的映射，这些映射会自动将更改写回，从而避免了 `near_sdk::collections` 引入的问题。
 

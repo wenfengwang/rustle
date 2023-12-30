@@ -8,11 +8,11 @@
 
 ### 描述
 
-每次状态增长时，都应确保有足够的 Balance 来覆盖扩展。
+每次状态增长时，都应确保有足够的余额（Balance）来覆盖扩展。
 
 ### 示例代码
 
-在下面的代码中，插入 `self.banks` 后存储使用量会扩大，应检查差异以确保调用者附加的存储费用足够。
+在下面的代码中，向 `self.banks` 插入数据后存储使用量会增加，应检查差异以确保调用者附加的存储费用足够。
 
 ```rust
 let prev_storage = env::storage_usage();
@@ -24,6 +24,6 @@ self.banks.insert(&Bank {
 
 assert!(
     env::attached_deposit() > ((env::storage_usage() - prev_storage) as u128 * env::storage_byte_cost()),
-    "存储 gas 不足"
+    "存储气体不足"
 );
 ```

@@ -30,6 +30,6 @@ impl Contract {
 }
 ```
 
-> 宏 `#[ext_contract(...)]` 会将 Rust trait 转换为带有静态方法的模块，这允许用户进行跨合约调用。这些静态方法接收由 trait 定义的位置参数，然后是 `receiver_id`、附加的存款金额和 Gas 量，并返回一个新的 `Promise`。
+> 宏 `#[ext_contract(...)]` 会将 Rust trait 转换为带有静态方法的模块，这使得用户能够进行跨合约调用。这些静态方法接受由 trait 定义的位置参数，然后是 `receiver_id`、附加的存款以及 Gas 量，并返回一个新的 `Promise`。
 
-在此示例中，合约可以通过跨合约调用（即 `ext_calculator::ext(calculator_account_id).sum(a, b)`）获取 a 和 b 的和。
+在此示例中，合约可以通过跨合约调用（即 `ext_calculator::ext(calculator_account_id).sum(a, b)`）来获取 a 和 b 的和。
