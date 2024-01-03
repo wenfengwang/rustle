@@ -8,7 +8,7 @@
 
 ### 描述
 
-名称相似但略有不同的符号可能会被误用。这类错误手动发现很难，但可能导致严重后果。
+名称相似但略有不同的符号可能会被误用。此类错误很难手动发现，但可能导致严重后果。
 
 ### 示例代码
 
@@ -23,4 +23,4 @@ ext::ft_transfer(
 )
 ```
 
-在这个示例中，合约应该使用 `GAS_FOR_FT_TRANSFER` 而不是 `GAS_FOR_NFT_TRANSFER`。这两个常量的值可能有很大差异，而且 `ft_transfer` 的 Gas 可能不足。
+在此示例中，合约应使用 `GAS_FOR_FT_TRANSFER` 而不是 `GAS_FOR_NFT_TRANSFER`。这两个常量的值可能有很大差异，而且为 `ft_transfer` 提供的 Gas 可能不足。

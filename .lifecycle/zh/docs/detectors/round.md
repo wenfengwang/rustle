@@ -8,7 +8,7 @@
 
 ### 描述
 
-查找算术运算中是否使用了舍入。在 DeFi 中，如果不指定舍入的方向可能会被利用。有关更多详细信息，请参阅[如何一次成为百万富翁，0.000001 BTC (neodyme.io)](https://blog.neodyme.io/posts/lending_disclosure/)。
+查找算术运算中是否使用了舍入。在 DeFi 中，如果不指定舍入的方向，可能会被利用。有关更多详细信息，请参阅[如何成为百万富翁，每次 0.000001 BTC (neodyme.io)](https://blog.neodyme.io/posts/lending_disclosure/)。
 
 注意：**Rustle** 不会报告开发者为特定目的实现的舍入函数。
 
@@ -18,4 +18,4 @@
 let fee = (amount * fee_rate).round();
 ```
 
-在此示例中，合约开发者不应使用 `round` 来计算费用。相反，他们应该使用 `ceil` 或 `floor` 来指定舍入的方向。
+在这个示例中，合约开发者不应该使用 `round` 来计算费用。相反，他们应该使用 `ceil` 或 `floor` 来明确指定舍入的方向。

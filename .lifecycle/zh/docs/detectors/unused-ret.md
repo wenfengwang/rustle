@@ -1,5 +1,5 @@
 
-## 未使用的非 void 函数返回值
+## 非 void 函数的未使用返回值
 
 ### 配置
 
@@ -8,7 +8,7 @@
 
 ### 描述
 
-应该使用函数的返回值。否则，可能会丢失某些信息或未经检查。
+应该使用函数的返回值。否则，可能会丢失信息或遗漏检查。
 
 ### 示例代码
 
@@ -38,7 +38,7 @@ impl Contract {
 }
 ```
 
-在此示例中，合约没有检查 `remove` 的返回值以确保 `guardian` 存在于 `self.guardians` 中。如果 `guardian` 不存在，程序不会产生 panic，这可能带来意想不到的影响。
+在此示例中，合约没有检查 `remove` 的返回值以确保 `guardian` 存在于 `self.guardians` 中。如果 `guardian` 不存在，程序不会触发 panic，这可能会带来意想不到的影响。
 
 一个可能的修正版本如下：
 
@@ -57,4 +57,4 @@ pub fn remove_guardians(&mut self, guardians: Vec<ValidAccountId>) -> Vec<ValidA
 }
 ```
 
-在这个版本中，`remove_guardians` 将返回一个包含所有不在 `self.guardians` 中的 `guardians` 的向量。
+在这个版本中，`remove_guardians` 将返回所有不在 `self.guardians` 中的 `guardians` 的向量。

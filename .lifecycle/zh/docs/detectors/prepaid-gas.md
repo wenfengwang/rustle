@@ -1,10 +1,10 @@
 
-## `ft_transfer_call`中缺乏对预付燃料的检查
+## `ft_transfer_call`中缺少对预付燃料的检查
 
 ### 配置
 
 * 检测器ID：`prepaid-gas`
-* 严重程度：低
+* 严重性：低
 
 ### 描述
 

@@ -8,11 +8,11 @@
 
 ### 描述
 
-根据 [NEP-145](https://github.com/near/NEPs/blob/master/neps/nep-0145.md#5-account-gracefully-closes-registration)，如果账户所有者尝试关闭账户，他需要在余额为零的情况下取消注册存储，除非设置了`force`标志。因此，NEP-145的实现应遵循此规则。
+根据 [NEP-145](https://github.com/near/NEPs/blob/master/neps/nep-0145.md#5-account-gracefully-closes-registration)，如果账户所有者尝试关闭账户，他需要在账户余额为零的情况下注销存储，除非设置了`force`标志。因此，NEP-145的实现应遵循此规则。
 
 ### 示例代码
 
-以下是`storage_unregister`的错误示例：
+以下是 `storage_unregister` 的错误示例：
 
 ```rust
 fn storage_unregister(&mut self, force: Option<bool>) -> bool {
@@ -30,7 +30,7 @@ fn storage_unregister(&mut self, force: Option<bool>) -> bool {
 }
 ```
 
-此操作将从`accounts`中移除账户，而不检查`balance`。因此，正确的版本是：
+这段代码将从 `accounts` 中移除账户，而不检查 `balance`。因此，正确的版本是：
 
 ```rust
 fn storage_unregister(&mut self, force: Option<bool>) -> bool {

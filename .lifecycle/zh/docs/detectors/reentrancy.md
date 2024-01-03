@@ -16,9 +16,9 @@
 
 以下是一个重入攻击的例子。受害合约在函数 `ft_resolve_transfer` 中只有在成功向攻击者转账后才更新状态（即 `attacker_balance`）。
 
-受害合约调用 `ft_token::ft_transfer_call` 来转移代币，这将在内部转账后调用攻击者的 `ft_on_transfer`。
+受害合约调用 `ft_token::ft_transfer_call` 来转移代币，该调用在内部转账完成后会触发攻击者的 `ft_on_transfer`。
 
-然而，如果攻击者的 `ft_on_transfer` 再次调用受害合约的 `withdraw`，由于状态（即 `attacker_balance`）尚未更改，受害合约将再次向攻击者转账。
+然而，如果攻击者的 `ft_on_transfer` 再次调用受害者的 `withdraw` 函数，由于状态（即 `attacker_balance`）尚未更新，受害者会再次向攻击者转账。
 
 调用关系图如下：
 
@@ -46,7 +46,7 @@ graph LR
 #[near_bindgen]
 impl MaliciousContract {
     pub fn ft_on_transfer(&mut self, amount: u128) {
-        if self.reentered == false {
+        if !self.reentered {
             ext_victim::withdraw(
                 amount.into(),
                 &VICTIM,
@@ -81,7 +81,7 @@ impl FungibleToken {
 }
 ```
 
-受害合约：
+受害者合约：
 
 ```rust
 #[near_bindgen]

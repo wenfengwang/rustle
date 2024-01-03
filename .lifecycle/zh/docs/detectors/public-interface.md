@@ -8,7 +8,7 @@
 
 ### 描述
 
-公共接口是可以被其他人调用的函数。具体来说，它们是 `#[near_bindgen]` 结构中没有 `#[private]` 宏的公共函数。
+公共接口是指可以被其他人调用的函数。具体来说，它们是 `#[near_bindgen]` 结构中未使用 `#[private]` 宏修饰的公共函数。
 
 ### 示例代码
 
@@ -34,4 +34,4 @@ impl Contract {
 }
 ```
 
-在此示例代码中，所有四个函数都是 `#[near_bindgen]` 结构 `Contract` 的方法。但只有 `withdraw` 和 `check_balance` 是公共接口。`callback_withdraw` 是一个用 `#[private]` 修饰的公共函数，因此它是一个内部函数。`sub_balance` 是 `Contract` 的私有函数。
+在此示例代码中，所有四个函数都是 `#[near_bindgen]` 结构 `Contract` 的方法。但只有 `withdraw` 和 `check_balance` 是公共接口。`callback_withdraw` 是一个被 `#[private]` 宏修饰的公共函数，因此它是一个内部函数。`sub_balance` 是 `Contract` 的私有函数。

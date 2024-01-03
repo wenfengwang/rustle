@@ -3,12 +3,12 @@
 
 ### 配置
 
-* 检测器 ID：`upgrade-func`
+* 检测器ID：`upgrade-func`
 * 严重程度：低
 
 ### 描述
 
-合约可能需要升级功能，**Rustle** 将检查合约中是否存在此类接口。
+合约可能需要升级功能，**Rustle** 将检查合约中是否存在这样的接口。
 
 如果没有升级功能，合约将无法升级，合约状态也无法迁移。
 
@@ -28,8 +28,8 @@ mod upgrade {
     const GAS_FOR_GET_CONFIG_CALL: Gas = Gas(Gas::ONE_TERA.0 * 5);
     const MIN_GAS_FOR_MIGRATE_STATE_CALL: Gas = Gas(Gas::ONE_TERA.0 * 10);
 
-    /// 自我升级并调用迁移，通过不将代码加载到内存中来优化 gas。
-    /// 输入的是代码的非序列化字节集。
+    /// 自我升级并调用迁移，通过不将代码加载到内存中来优化gas。
+    /// 输入为代码的非序列化字节集。
     #[no_mangle]
     pub extern "C" fn upgrade() {
         env::setup_panic_hook();
@@ -46,12 +46,12 @@ mod upgrade {
                 current_account_id.as_ptr() as _,
             );
             sys::promise_batch_action_deploy_contract(promise_id, u64::MAX as _, 0);
-            // 完成此调用所需的 Gas。
+            // 完成此调用所需的Gas。
             let required_gas =
                 env::used_gas() + GAS_TO_COMPLETE_UPGRADE_CALL + GAS_FOR_GET_CONFIG_CALL;
             require!(
                 env::prepaid_gas() >= required_gas + MIN_GAS_FOR_MIGRATE_STATE_CALL,
-                "Not enough gas to complete state migration"
+                "Gas不足以完成状态迁移"
             );
             let migrate_state_attached_gas = env::prepaid_gas() - required_gas;
             // 安排状态迁移。
@@ -64,15 +64,15 @@ mod upgrade {
                 0 as _,
                 migrate_state_attached_gas.0,
             );
-            // 在迁移完成后安排返回配置。
+            // 安排在迁移完成后返回配置。
             //
             // 升级方法将其作为一个动作附加上，因此如果配置视图调用不能成功返回，整个升级包括部署
-            // 合约动作和迁移可以被回滚。视图调用反序列化状态并反序列化
-            // 包含 owner_id 的配置。如果合约能够反序列化当前配置，
+            // 合约动作和迁移都可以回滚。视图调用反序列化状态并反序列化
+            // 包含owner_id的配置。如果合约能够反序列化当前配置，
             // 那么它可以验证所有者并再次执行升级（以防之前的
             // 升级/迁移出现问题）。
             //
-            // 它是远程合约升级的额外安全保障。
+            // 这是远程合约升级的额外安全保障。
             sys::promise_batch_action_function_call(
                 promise_id,
                 get_config_method_name.len() as _,

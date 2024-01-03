@@ -3,7 +3,7 @@
 
 ### 配置
 
-* 检测器 id：`dup-collection-id`
+* 检测器 id: `dup-collection-id`
 * 严重程度：中等
 
 ### 描述

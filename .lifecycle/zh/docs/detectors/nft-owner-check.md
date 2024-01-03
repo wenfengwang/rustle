@@ -8,7 +8,7 @@
 
 ### 描述
 
-在 [NEP-178](https://github.com/near/NEPs/blob/master/neps/nep-0178.md) 的设计中，NFT 的所有者可以通过指定的接口（即 `nft_approve`、`nft_revoke` 和 `nft_revoke_all`）来批准或撤销授权。这些接口应实现所有者检查，以确保只有所有者才能调用，否则任何人都可能修改 NFT 的授权。
+在[NEP-178](https://github.com/near/NEPs/blob/master/neps/nep-0178.md)的设计中，NFT 的所有者可以通过使用指定的接口（即 `nft_approve`、`nft_revoke` 和 `nft_revoke_all`）来批准或撤销批准。这些接口应实现所有者检查功能，以确保只有所有者才能调用它们，否则任何人都可能修改 NFT 的批准状态。
 
 ### 示例代码
 
