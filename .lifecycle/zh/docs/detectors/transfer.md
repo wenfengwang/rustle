@@ -1,16 +1,15 @@
-
-## 转账操作
+## 转移动作
 
 ### 配置
 
-* 检测器 ID：`transfer`
-* 严重级别：info
+* 检测器 ID： `transfer`
+* 严重性：提示
 
 ### 描述
 
 查找所有转账操作。
 
-此检测器可以帮助定位所有本地代币和 NEP-141 代币的转账操作。
+该探测器可以帮助定位本地代币和 NEP 141 代币的所有转账活动。
 
 ### 示例代码
 
@@ -20,7 +19,7 @@ Promise::new(env::predecessor_account_id()).transfer(amount);
 ```
 
 ```rust
-// NEP-141 ft_transfer
+// NPE141 ft_transfer
 // https://github.com/ref-finance/ref-contracts/blob/c580d8742d80033a630a393180163ab70f9f3c94/ref-exchange/src/account_deposit.rs#L446
 ext_fungible_token::ft_transfer(
     sender_id.clone(),
@@ -40,4 +39,4 @@ ext_fungible_token::ft_transfer(
 ))
 ```
 
-在这些示例中，无论是本地代币转账还是 NEP-141 代币转账都可以被 **Rustle** 检测到。
+在这些示例中，本地代币转移和 NEP 141 代币转移都可以被 **Rustle** 检测到。

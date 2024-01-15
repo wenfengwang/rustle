@@ -1,14 +1,13 @@
-
-## 集合中的重复 id 使用
+## 集合中使用了重复的 id
 
 ### 配置
 
-* 检测器 id: `dup-collection-id`
-* 严重程度：中等
+* 检测器 ID： `dup-collection-id`
+* 严重性：中
 
 ### 描述
 
-NEAR SDK 中的集合使用 `new` 函数来初始化自身。
+NEAR SDK 中的集合使用函数 `new` 来初始化自身。
 
 ```rust
 pub fn new<S>(prefix: S) -> Self
@@ -34,10 +33,10 @@ impl Contract {
     pub fn new() -> Self {
         Self {
             orders: UnorderedMap::new(StorageKey::Orders),
-            users: UnorderedSet::new(StorageKey::Orders), // 这里应该使用 `StorageKey::Users`
+            users: UnorderedSet::new(StorageKey::Orders), // Should use `StorageKey::Users` here
         }
     }
 }
 ```
 
-在这个示例中，`orders` 和 `users` 使用了相同的 id，这可能会导致意外的行为。
+在此示例中，`orders` 和 `users` 共享相同的 id，这可能会导致意外行为。

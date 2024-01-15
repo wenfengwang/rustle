@@ -1,20 +1,19 @@
-
 ## 缺少升级功能
 
 ### 配置
 
-* 检测器ID：`upgrade-func`
-* 严重程度：低
+* 检测器 ID： `upgrade-func`
+* 严重性：低
 
 ### 描述
 
-合约可能需要升级功能，**Rustle** 将检查合约中是否存在这样的接口。
+合约可能需要升级功能，**Rustle**将检查合约中是否存在这样的接口。
 
-如果没有升级功能，合约将无法升级，合约状态也无法迁移。
+如果没有升级功能，合约就无法升级，合约状态也无法迁移。
 
 ### 示例代码
 
-以下是一个升级功能的示例。
+这里是一个升级功能的示例。
 
 ```rust
 // https://github.com/NearDeFi/burrowland/blob/687d72ab6c158b3160dc31d6840471a687eff9d5/contract/src/upgrade.rs#L46
@@ -28,8 +27,8 @@ mod upgrade {
     const GAS_FOR_GET_CONFIG_CALL: Gas = Gas(Gas::ONE_TERA.0 * 5);
     const MIN_GAS_FOR_MIGRATE_STATE_CALL: Gas = Gas(Gas::ONE_TERA.0 * 10);
 
-    /// 自我升级并调用迁移，通过不将代码加载到内存中来优化gas。
-    /// 输入为代码的非序列化字节集。
+    /// Self upgrade and call migrate, optimizes gas by not loading into memory the code.
+    /// Takes as input non serialized set of bytes of the code.
     #[no_mangle]
     pub extern "C" fn upgrade() {
         env::setup_panic_hook();
@@ -46,15 +45,15 @@ mod upgrade {
                 current_account_id.as_ptr() as _,
             );
             sys::promise_batch_action_deploy_contract(promise_id, u64::MAX as _, 0);
-            // 完成此调用所需的Gas。
+            // Gas required to complete this call.
             let required_gas =
                 env::used_gas() + GAS_TO_COMPLETE_UPGRADE_CALL + GAS_FOR_GET_CONFIG_CALL;
             require!(
                 env::prepaid_gas() >= required_gas + MIN_GAS_FOR_MIGRATE_STATE_CALL,
-                "Gas不足以完成状态迁移"
+                "Not enough gas to complete state migration"
             );
             let migrate_state_attached_gas = env::prepaid_gas() - required_gas;
-            // 安排状态迁移。
+            // Scheduling state migration.
             sys::promise_batch_action_function_call(
                 promise_id,
                 migrate_method_name.len() as _,
@@ -64,15 +63,16 @@ mod upgrade {
                 0 as _,
                 migrate_state_attached_gas.0,
             );
-            // 安排在迁移完成后返回配置。
+            // Scheduling to return config after the migration is completed.
             //
-            // 升级方法将其作为一个动作附加上，因此如果配置视图调用不能成功返回，整个升级包括部署
-            // 合约动作和迁移都可以回滚。视图调用反序列化状态并反序列化
-            // 包含owner_id的配置。如果合约能够反序列化当前配置，
-            // 那么它可以验证所有者并再次执行升级（以防之前的
-            // 升级/迁移出现问题）。
+            // The upgrade method attaches it as an action, so the entire upgrade including deploy
+            // contract action and migration can be rolled back if the config view call can't be
+            // returned successfully. The view call deserializes the state and deserializes the
+            // config which contains the owner_id. If the contract can deserialize the current config,
+            // then it can validate the owner and execute the upgrade again (in case the previous
+            // upgrade/migration went badly).
             //
-            // 这是远程合约升级的额外安全保障。
+            // It's an extra safety guard for the remote contract upgrades.
             sys::promise_batch_action_function_call(
                 promise_id,
                 get_config_method_name.len() as _,

@@ -1,14 +1,13 @@
-
 ## 非 void 函数的未使用返回值
 
 ### 配置
 
-* 检测器 ID：`unused-ret`
-* 严重程度：低
+* 检测器 ID： `unused-ret`
+* 严重性：低
 
 ### 描述
 
-应该使用函数的返回值。否则，可能会丢失信息或遗漏检查。
+应该使用函数的返回值。否则，可能会丢失或未检查某些信息。
 
 ### 示例代码
 
@@ -31,16 +30,16 @@ impl Contract {
         self.assert_owner();
         for guardian in guardians {
             // pub fn remove(&mut self, element: &T) -> bool
-            // 从集合中移除一个值。返回该值是否存在于集合中。
+            // Removes a value from the set. Returns whether the value was present in the set.
             self.guardians.remove(guardian.as_ref());
         }
     }
 }
 ```
 
-在此示例中，合约没有检查 `remove` 的返回值以确保 `guardian` 存在于 `self.guardians` 中。如果 `guardian` 不存在，程序不会触发 panic，这可能会带来意想不到的影响。
+在此示例中，合约不检查 `remove` 的返回值以确保 `guardian` 存在于 `self.guardians` 中。如果 `guardian` 不存在，程序不会出现 panic，这可能会带来意想不到的影响。
 
-一个可能的修正版本如下：
+一个可能的固定版本如下：
 
 ```rust
 #[payable]
@@ -57,4 +56,4 @@ pub fn remove_guardians(&mut self, guardians: Vec<ValidAccountId>) -> Vec<ValidA
 }
 ```
 
-在这个版本中，`remove_guardians` 将返回所有不在 `self.guardians` 中的 `guardians` 的向量。
+在此版本中，`remove_guardians` 将返回一个向量，包含所有不在 `self.guardians` 中的 `guardians`。

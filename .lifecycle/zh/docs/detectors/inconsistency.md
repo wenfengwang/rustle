@@ -1,14 +1,13 @@
-
 ## 符号不一致
 
 ### 配置
 
-* 检测器 ID：`inconsistency`
-* 严重性：info
+* 检测器 ID： `inconsistency`
+* 严重性：信息
 
 ### 描述
 
-名称相似但略有不同的符号可能会被误用。此类错误很难手动发现，但可能导致严重后果。
+名称相似但略有不同的符号可能会被误用。这种错误很难手动发现，但可能导致严重的后果。
 
 ### 示例代码
 
@@ -19,8 +18,8 @@ ext::ft_transfer(
     None,
     token_id,
     1,
-    GAS_FOR_NFT_TRANSFER  // 这里应该使用 GAS_FOR_FT_TRANSFER
+    GAS_FOR_NFT_TRANSFER  // should use GAS_FOR_FT_TRANSFER here
 )
 ```
 
-在此示例中，合约应使用 `GAS_FOR_FT_TRANSFER` 而不是 `GAS_FOR_NFT_TRANSFER`。这两个常量的值可能有很大差异，而且为 `ft_transfer` 提供的 Gas 可能不足。
+在此示例中，合约应使用 `GAS_FOR_FT_TRANSFER` 而不是 `GAS_FOR_NFT_TRANSFER`。这两个常量的值可能会有很大的差异，而且用于 `ft_transfer` 的 gas 可能不足。
